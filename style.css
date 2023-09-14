@@ -5,3 +5,11 @@
 body {
     background-color: var(--background);
 }
+
+.hidden {
+    display: none;
+}
+
+.shown {
+    display: block;
+}
