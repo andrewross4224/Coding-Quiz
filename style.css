@@ -13,3 +13,12 @@ body {
 .shown {
     display: block;
 }
+
+#question-area ol li {
+    font-size: 2vw;
+    margin-left: 2%
+}
+
+#question {
+    text-align: center;
+}
