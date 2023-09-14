@@ -9,15 +9,15 @@
 </head>
 
 <body>
-    <button>Leaderboard</button>
-    <p>Time Remaining:</p>
-    <div>
+    <button id="leaderboard">Leaderboard</button>
+    <p id="timer">Time Remaining:</p>
+    <div id="quiz-area" class="shown">
         <h1>Coding Quiz Challenge</h1>
         <p>Try to answer the following code-related questions within the time limit.<br> Keep in mind that incorrect
             answers will penalize your score/time<br> by ten seconds!</p>
-        <button>Start Quiz</button>
+        <button id="start">Start Quiz</button>
     </div>
-    <div>
+    <div id="question-area" class="hidden">
         <!-- Insert question here -->
         <h1></h1>
         <!-- populate with options -->
@@ -39,7 +39,7 @@
         <h2></h2>
     </div>
     <!-- Leaderboard screen -->
-    <div>
+    <div id="leaderboard-area" class="hidden">
         <h1>Leader board</h1>
         <ol>
 
