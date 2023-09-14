@@ -41,6 +41,7 @@ var option1 = document.getElementById("option1");
 var option2 = document.getElementById("option2");
 var option3 = document.getElementById("option3");
 var option4 = document.getElementById("option4");
+var index = 0;
 // questions array of objects (source: https://www.w3schools.com/js/default.asp)
 var questions = [
     {
@@ -49,7 +50,7 @@ var questions = [
         option2: "<javascript>",
         option3: "<js>",
         option4: "<scripting>",
-        correctanswer : "<script>"
+        correctanswer: "<script>"
     },
     {
         questionchosen: "Where is the correct place to insert a JavaScript script?",
@@ -57,7 +58,7 @@ var questions = [
         option2: "The <head> section",
         option3: "The <body> section",
         option4: "The <footer> section",
-        correctanswer : "Both the <head> section and the <body> section are correct"
+        correctanswer: "Both the <head> section and the <body> section are correct"
     },
     {
         questionchosen: 'What is the correct syntax for referring to an external script called "xxx.js"?',
@@ -65,16 +66,53 @@ var questions = [
         option2: '<script href="xxx.js">',
         option3: '<script name="xxx.js">',
         option4: '<script="xxx.js">',
-        correctanswer : '<script src="xxx.js">'
+        correctanswer: '<script src="xxx.js">'
     },
 ]
 // chooses random question then removes question from array
 function questionpicker(i = Math.floor(Math.random() * questions.length)) {
-    question.textContent = [questions[i].questionchosen]
-    option1.textContent = [questions[i].option1]
-    option2.textContent = [questions[i].option2]
-    option3.textContent = [questions[i].option3]
-    option4.textContent = [questions[i].option4]
-    questions.splice(i, 1);
-
+    question.textContent = questions[i].questionchosen;
+    option1.textContent = questions[i].option1;
+    option2.textContent = questions[i].option2;
+    option3.textContent = questions[i].option3;
+    option4.textContent = questions[i].option4;
+    index = i;
 }
+one = questions[index].option1
+two = questions[index].option2
+three = questions[index].option3
+four = questions[index].option4
+correct = questions[index].correctanswer
+
+option1.addEventListener("click", function () {
+    if (one === correct) {
+        console.log("correct")
+    } else {
+        console.log("wrong")
+        return;
+    }
+})
+option2.addEventListener("click", function () {
+    if (two === correct) {
+        console.log("correct")
+    } else {
+        console.log("wrong")
+        return;
+    }
+})
+option3.addEventListener("click", function () {
+    if (three === correct) {
+        console.log("correct")
+    } else {
+        console.log("wrong")
+        return;
+    }
+})
+option4.addEventListener("click", function () {
+    if (four === correct) {
+        console.log("correct")
+    } else {
+        console.log("wrong")
+        return;
+    }
+})
