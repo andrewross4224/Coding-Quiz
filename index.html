@@ -10,6 +10,7 @@
 
 <body>
     <button id="leaderboard">Leaderboard</button>
+    <button id="startover" class="hidden" onclick=window.location.reload(true)>Start Over</button>
     <p id="timer" class="hidden">Time Remaining:</p>
     <div id="quiz-area" class="shown">
         <h1>Coding Quiz Challenge</h1>
@@ -22,19 +23,30 @@
         <h1 id="question"></h1>
         <!-- populate with options -->
         <ol>
-            <li id="option1"></li>
-            <li id="option2"></li>
-            <li id="option3"></li>
-            <li id="option4"></li>
+            <li id="option1" class="answer"></li>
+            <li id="option2" class="answer"></li>
+            <li id="option3" class="answer"></li>
+            <li id="option4" class="answer"></li>
         </ol>
         <!-- Insert correct or incorrect here -->
-        <h2></h2>
+        <h2 id="answer-value"></h2>
     </div>
     <!-- Leaderboard screen -->
     <div id="leaderboard-area" class="hidden">
         <h1>Leader board</h1>
         <ol>
         </ol>
+    </div>
+    <!-- Gameover score area -->
+    <div id="gameover" class="hidden">
+        <h1>GAMEOVER!</h1>
+        <h2 id="score"></h2>
+        <form method="POST">
+            <label for="Initials">Initials</label>
+            <input type="text" minlength="3" maxlength="3" name="Initials" id="Initials" placeholder="Type Initials Here"/>
+            <div id="warning"></div>
+            <button id="initial-submit">Submit</button>
+        </form>
     </div>
     <script src="script.js"></script>
 </body>

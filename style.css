@@ -1,5 +1,6 @@
 :root {
     --background: rgb(43, 154, 126);
+    --secondary: rgb(12, 96, 75);
 }
 
 body {
@@ -14,6 +15,8 @@ body {
     display: block;
 }
 
+
+
 #question-area ol li {
     font-size: 2vw;
     margin-left: 2%
@@ -21,4 +24,15 @@ body {
 
 #question {
     text-align: center;
+}
+
+.answer:hover {
+    cursor: pointer;
+    background-color: var(--secondary);
+    transition-duration: 2s;
+}
+
+#warning {
+    color: rgb(136, 0, 0);
+    font-weight: bold;
 }
