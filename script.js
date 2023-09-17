@@ -1,19 +1,25 @@
 // ----------------------------------------------GLOBAL VARIABLES----------------------------------------------
 // setting button elements into variables
 var startButtonClick = document.getElementById("start");
-var startOver = document.getElementById("startover")
+var startOver = document.getElementById("startover");
 var leaderboardButton = document.getElementById("leaderboard");
 var initialsButton = document.getElementById("initial-submit");
+var clearLeaderboard = document.getElementById("clear-leaderboard");
 // setting div classes into variables
 var quizArea = document.getElementById("quiz-area");
 var questionArea = document.getElementById("question-area");
+var leaderBoardArea = document.getElementById("leaderboard-area");
 var finished = document.getElementById("gameover");
 // timer variable
 var timer = document.getElementById("timer");
-var secondsLeft = 5
-// user score
+var secondsLeft = 75;
+// user score and leaderboard
 var userScore = document.getElementById("score");
+var userInitials;
+var userObject;
 var score = 0;
+var userLeaderboard = [];
+var leaderList = document.getElementById("leaderlist")
 // setting variables for quiz layout
 var question = document.getElementById("question");
 var option1 = document.getElementById("option1");
@@ -31,7 +37,6 @@ var warning = document.getElementById("warning")
 var answerValue = document.getElementById("answer-value");
 // declaring index
 var index = 0;
-// setting variables for event listener
 // questions array of objects (source: https://www.w3schools.com/js/default.asp)
 var questions = [
     {
@@ -131,27 +136,62 @@ function countdown() {
 };
 // chooses random question then removes question from array
 function questionpicker(i = Math.floor(Math.random() * questions.length)) {
-    question.textContent = questions[i].questionchosen;
-    correct = questions[i].correctanswer
-    one = questions[i].option1;
-    two = questions[i].option2;
-    three = questions[i].option3;
-    four = questions[i].option4;
-    option1.textContent = one
-    option2.textContent = two
-    option3.textContent = three
-    option4.textContent = four
-    index = i
+    if (questions.length > 0) {
+        question.textContent = questions[i].questionchosen;
+        correct = questions[i].correctanswer
+        one = questions[i].option1;
+        two = questions[i].option2;
+        three = questions[i].option3;
+        four = questions[i].option4;
+        option1.textContent = one
+        option2.textContent = two
+        option3.textContent = three
+        option4.textContent = four
+        index = i
+    } else {
+        secondsLeft = 0;
+    }
 };
+// storing user score and initials into leaderboard
 function storeInitials(event) {
     event.preventDefault();
-    var userInitials = document.getElementById("Initials").value;
+    userInitials = document.getElementById("Initials").value;
     if (userInitials === "") {
         warning.textContent = "Initials cannot be blank!"
+        warning.style = "color: rgb(136, 0, 0);"
     } else {
-        warning.style = "color: white"
-        warning.textContent = "Score submited click leaderboard to see scores!"
+        warning.style = "color: white";
+        warning.textContent = "Score submited click leaderboard to see scores!";
+        userObject = "Name: " + String(userInitials).toUpperCase() + " Score: " + score;
+        userLeaderboard.push(userObject);
+        initialsButton.setAttribute("class", "hidden");
+        storeLeaderboard();
+        renderLeaderboard();
+    };
+};
+// init leaderboard
+function init() {
+    var currentLeaderboard = JSON.parse(localStorage.getItem("leaderboard"));
+
+    if (currentLeaderboard !== null) {
+        userLeaderboard = currentLeaderboard;
     }
+    renderLeaderboard();
+};
+// putting user input into local storage
+function storeLeaderboard() {
+    localStorage.setItem("leaderboard", JSON.stringify(userLeaderboard));
+};
+// rendering leaderboard from local storage
+function renderLeaderboard() {
+    leaderList.innerHTML = "";
+    for (var i = 0; i < userLeaderboard.length; i++) {
+        var leader = userLeaderboard[i];
+        var li = document.createElement("li");
+        li.textContent = leader;
+        li.setAttribute("user-index", i);
+        leaderList.appendChild(li)
+    };
 };
 // if answer is correct
 function rightAnswer() {
@@ -164,7 +204,7 @@ function rightAnswer() {
 function wrongAnswer() {
     score--
     answerValue.textContent = "Incorrect";
-    secondsLeft = secondsLeft - 5;
+    secondsLeft = secondsLeft - 10;
     questions.splice(index, 1);
     questionpicker();
 };
@@ -184,15 +224,24 @@ function gameOver() {
     timer.setAttribute("class", "hidden");
     finished.setAttribute("class", "shown");
     userScore.textContent = "Your score is " + score + "!";
-}
+};
 // display leaderboard
 function leaderboard() {
     quizArea.setAttribute("class", "hidden");
     questionArea.setAttribute("class", "hidden");
     timer.setAttribute("class", "hidden");
     finished.setAttribute("class", "hidden");
-
+    leaderBoardArea.setAttribute("class", "shown");
+    startOver.setAttribute("class", "shown");
+    startOver.style = "display: inline";
 };
+// clear leaderboard
+function leaderboardClear() {
+    userLeaderboard = [];
+    storeLeaderboard();
+    renderLeaderboard();
+}
+
 // ------------------------------------------------EVENT-LISTENERS-----------------------------------------------
 // event listener for start button
 startButtonClick.addEventListener("click", startButton);
@@ -200,6 +249,8 @@ startButtonClick.addEventListener("click", startButton);
 leaderboardButton.addEventListener("click", leaderboard);
 // Initials submit button
 initialsButton.addEventListener("click", storeInitials);
+// clear leaderboard button
+clearLeaderboard.addEventListener("click", leaderboardClear);
 // event listeners for question options
 option1.addEventListener("click", function () {
     if (one === correct) {
@@ -229,3 +280,5 @@ option4.addEventListener("click", function () {
         wrongAnswer();
     }
 });
+
+init();
