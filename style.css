@@ -1,10 +1,15 @@
 :root {
     --background: rgb(43, 154, 126);
     --secondary: rgb(12, 96, 75);
+    --graywhite: rgb(243, 243, 243);
 }
 
 body {
     background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
 }
 
 .hidden {
@@ -12,23 +17,97 @@ body {
 }
 
 .shown {
-    display: block;
+    display: inline;
 }
 
+button {
+    padding: 5px;
+    max-width: 5vw;
+    min-width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+    border-radius: 25px;
+}
 
+#start {
+    background-color: var(--background);
+    border: none;
+}
+
+#initial-submit, #clear-leaderboard {
+    background-color: var(--background);
+    border: none;
+    margin: 10px
+}
+
+#Initials {
+    width: 26px;
+}
+
+#leaderboard {
+    position: fixed;
+    margin: 15px 0 0 10px;
+    background-color: var(--secondary);
+    color: var(--graywhite);
+    border: none;
+}
+
+#startover {
+    position: fixed;
+    margin: 45px 0 0 10px;
+    background-color: var(--secondary);
+    color: var(--graywhite);
+    border: none;
+}
+
+#timer {
+    position: fixed;
+    margin: 70px 0 0 10px;
+    color: var(--graywhite);
+    font-size: 40px;
+}
+
+#quiz-area {
+    margin-top: 50px;
+    text-align: center;
+    background-color: var(--secondary);
+    padding: 25px;
+    border-radius: 25px;
+}
+
+#gameover, #leaderboard-area {
+    margin-top: 100px;
+    text-align: center;
+    background-color: var(--secondary);
+    padding: 25px;
+    border-radius: 25px;
+}
+
+#leaderboard-area {
+    padding: 50px;
+}
+
+#question-area {
+    margin-top: 125px;
+    padding: 25px;
+    border-radius: 25px;
+    background-color: var(--secondary)
+}
+
+#leaderboard-area ol {
+    color: var(--graywhite);
+}
 
 #question-area ol li {
-    font-size: 2vw;
-    margin-left: 2%
-}
-
-#question {
-    text-align: center;
+    font-size: 20px;
+    padding: 15px;
+    margin-right: 30px;
+    border-radius: 25px;
 }
 
 .answer:hover {
     cursor: pointer;
-    background-color: var(--secondary);
+    background-color: var(--background);
     transition-duration: 2s;
 }
 

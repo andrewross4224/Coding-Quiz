@@ -12,7 +12,7 @@ var leaderBoardArea = document.getElementById("leaderboard-area");
 var finished = document.getElementById("gameover");
 // timer variable
 var timer = document.getElementById("timer");
-var secondsLeft = 75;
+var secondsLeft = 60;
 // user score and leaderboard
 var userScore = document.getElementById("score");
 var userInitials;
@@ -164,6 +164,8 @@ function storeInitials(event) {
         warning.textContent = "Score submited click leaderboard to see scores!";
         userObject = "Name: " + String(userInitials).toUpperCase() + " Score: " + score;
         userLeaderboard.push(userObject);
+        var form = document.getElementById("form");
+        form.setAttribute("class", "hidden");
         initialsButton.setAttribute("class", "hidden");
         storeLeaderboard();
         renderLeaderboard();
@@ -197,6 +199,7 @@ function renderLeaderboard() {
 function rightAnswer() {
     score++
     answerValue.textContent = "Correct!";
+    answerValue.style = "color: rgb(243, 243, 243);";
     questions.splice(index, 1);
     questionpicker();
 };
@@ -204,6 +207,7 @@ function rightAnswer() {
 function wrongAnswer() {
     score--
     answerValue.textContent = "Incorrect";
+    answerValue.style = "color: rgb(136, 0, 0);";
     secondsLeft = secondsLeft - 10;
     questions.splice(index, 1);
     questionpicker();

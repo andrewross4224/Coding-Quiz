@@ -42,12 +42,12 @@
     <div id="gameover" class="hidden">
         <h1>GAMEOVER!</h1>
         <h2 id="score"></h2>
-        <form method="POST">
-            <label for="Initials">Your Initials</label>
-            <input type="text" maxlength="3" name="Initials" id="Initials" placeholder="Type Initials Here"/>
-            <div id="warning"></div>
+        <form method="POST" id="form">
+            <label for="Initials">Your Initials: </label>
+            <input type="text" maxlength="3" name="Initials" id="Initials" placeholder="AAA"/>
             <button id="initial-submit">Submit</button>
         </form>
+        <div id="warning"></div>
     </div>
     <script src="script.js"></script>
 </body>
