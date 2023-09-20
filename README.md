@@ -15,7 +15,7 @@ Once on the main page you can click either leaderboard, to see the top scores, o
 
 ## Website Image
 
-![Alt text](/codequiz.png)
+![Alt text](/assets/images/codequiz.png)
 
 ## Languages Used
 
